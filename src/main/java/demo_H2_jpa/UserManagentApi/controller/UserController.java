@@ -4,6 +4,7 @@ import demo_H2_jpa.UserManagentApi.exception.UserNotFoundException;
 import demo_H2_jpa.UserManagentApi.model.UserModel;
 import demo_H2_jpa.UserManagentApi.services.UserServices;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +32,7 @@ public class UserController {
      * @return The saved UserModel instance.
      */
     @PostMapping("/user")
-    public UserModel addUser(@RequestBody UserModel userModel){
+    public UserModel addUser(@Valid @RequestBody UserModel userModel){
 
         return userServices.saveUser(userModel);
     }
@@ -68,7 +69,7 @@ public class UserController {
      * @return The updated UserModel object.
      */
     @PutMapping("/{id}")
-    public UserModel updateUser(@PathVariable int id, @RequestBody UserModel userModel) {
+    public UserModel updateUser(@PathVariable int id,@Valid  @RequestBody UserModel userModel) {
         if (id <= 0) {
             throw new IllegalArgumentException("ID must be positive");
         }

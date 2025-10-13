@@ -4,11 +4,21 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * Represents a user entity in the system.
  * Maps to a database table via JPA annotations.
  */
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserModel {
     /**
      * The unique identifier for the user.
@@ -17,60 +27,63 @@ public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotBlank(message = "Name is required")
     private String name;
+    @NotBlank(message = "Email is required")
+    @Email(message = "Invalid email format")
     private String email;
-    /**
-     * Default no-argument constructor required by JPA.
-     */
-    public UserModel() {
-    }
-
-    /**
-     * Gets the user's ID.
-     *
-     * @return the user's ID
-     */
-    public int getId() {
-        return id;
-    }
-    /**
-     * Sets the user's ID.
-     *
-     * @param id the new ID to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-    /**
-     * Gets the user's name.
-     *
-     * @return the user's name
-     */
-    public String getName() {
-        return name;
-    }
-    /**
-     * Sets the user's name.
-     *
-     * @param name the new name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-    /**
-     * Gets the user's email address.
-     *
-     * @return the user's email address
-     */
-    public String getEmail() {
-        return email;
-    }
-    /**
-     * Sets the user's email address.
-     *
-     * @param email the new email address to set
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
+//    /**
+//     * Default no-argument constructor required by JPA.
+//     */
+//    public UserModel() {
+//    }
+//
+//    /**
+//     * Gets the user's ID.
+//     *
+//     * @return the user's ID
+//     */
+//    public int getId() {
+//        return id;
+//    }
+//    /**
+//     * Sets the user's ID.
+//     *
+//     * @param id the new ID to set
+//     */
+//    public void setId(int id) {
+//        this.id = id;
+//    }
+//    /**
+//     * Gets the user's name.
+//     *
+//     * @return the user's name
+//     */
+//    public String getName() {
+//        return name;
+//    }
+//    /**
+//     * Sets the user's name.
+//     *
+//     * @param name the new name to set
+//     */
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//    /**
+//     * Gets the user's email address.
+//     *
+//     * @return the user's email address
+//     */
+//    public String getEmail() {
+//        return email;
+//    }
+//    /**
+//     * Sets the user's email address.
+//     *
+//     * @param email the new email address to set
+//     */
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
 }

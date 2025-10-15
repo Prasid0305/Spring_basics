@@ -4,6 +4,8 @@ import demo_H2_jpa.UserManagentApi.exception.UserNotFoundException;
 import demo_H2_jpa.UserManagentApi.model.UserModel;
 import demo_H2_jpa.UserManagentApi.services.UserServices;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,7 @@ import java.util.logging.Logger;
  */
 @RestController
 @RequestMapping("/api")
+@Tag(name = "User Management", description = "Operations related to users")
 public class UserController {
 
 
@@ -52,7 +55,7 @@ public class UserController {
      * @return An Optional containing the UserModel if found, or empty if not.
      */
     @GetMapping("/{id}")
-    public Optional<UserModel> getUserById(@PathVariable int id) throws UserNotFoundException {
+    public Optional<UserModel> getUserById(@Parameter(description = "ID of the user to retrieve") @PathVariable int id) throws UserNotFoundException {
 
         if (id <= 0) {
 
